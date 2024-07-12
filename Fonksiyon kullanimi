@@ -1,0 +1,18 @@
+//Fonkisyon Olusturma
+float Health = 100.f;
+void CanArttir(ArttirmaOrani);
+
+//Fonksiyonun icini doldurma
+void AcCharacter::CanArttir(float ArttirmaOrani) {
+
+  Health = Health + 5;
+  Health = Health + ArttirmaOrani;
+  GEngine->AddOnScreenDebugMessage(4, 2.f, FColor::White FString::PrintF(TEXT("Yeni can degerimiz :"), Health )); 
+}
+
+void AcCharacter::BeginPlay() {
+
+  Super::BeginPlay();
+  CanArttir();
+  CanArttir(100);
+}
