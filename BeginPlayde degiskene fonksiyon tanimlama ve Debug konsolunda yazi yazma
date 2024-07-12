@@ -1,0 +1,11 @@
+// Degisken tanimlama
+UPROPERTY(VisibleDefaultsOnly ,BlueprintReadWrite, EditAnywhere, Category = GetSet;)
+float Health = 50.f ;
+
+//BeginPlayde Degiskene fonksiyon tanimlama
+void BeginPlay::AcCharater() {
+  Super::BeginPlay();
+  Health = Health + 100.f;
+  
+GEngine -> AddOnScreenDebugMessage(1, 5.f, FColor::Blue ,FString::PrintF(TEXT("Karakterin cani arttirildi yeni can degeri %f"), Health ));
+}
