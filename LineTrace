@@ -1,0 +1,20 @@
+UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Trace")
+float TraceDistance = 1000.f;
+
+void AaCharacter::Tick(float DeltaSeconds) {
+  Super::Tick(DeltaSeconds);
+  FHitResult HitResult;
+  FVector Start = GetActorLocation(); 
+  FVector End = (GetActorForwardVector() * 1000.f) + Start;
+  GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, EndCollisionChannel::ECC_Camera)
+  FCollisionQueryParams QueryParams;
+  QueryParams.AddIgnoredActor(this);
+  if(HitResult.GetActor()) {
+    GEngine->AddOnScreenDebugMessage(1, 10.f, FColor::Red, FString::Printf(TEXT("Hit olan actor: %s" ), *HitResult.GetActor()->GetName()));
+  }
+  else{
+    GEngine->AddOnScreenDebugMessage(1, 10.f, FColor::Yellow, FString::Printf(TEXT("Çarpma yok.")));
+  }
+  
+ 
+}
