@@ -1,0 +1,11 @@
+void AAIChar::BeginPlay() {
+  Super::BeginPlay();
+
+  AAIController* AIC_Ref = Cast<AAIController>(GetController());
+  if(AIC_Ref){
+    AIC_Ref->MoveToLocation(FVector (-120.f, 870.f, 130.f));
+  }
+  else {
+    GEngine->AddOnScreenDebugMessage(-1, 10.f; FColor::Blue, TEXT("AI Controller yok."));
+  }
+}
