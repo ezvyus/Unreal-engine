@@ -1,0 +1,12 @@
+PlayerInputComponent->BindAction("Spawn", IE_Pressed, this, &AcCharacter::Spawn);
+
+void AcCharacter::Spawn() {
+  FVector Spawnlocation = FVector (370.f, 370.f, 310.f);
+  FRotator SpawnRotator = FRotator(0);
+  FActorSpawnParameters Params;
+  Params.SpawnCollisionHandlingOverride = ESpawnCollisionHandlingMethod::AdjustIfPossibleDontSpawnIfColliding;
+  GetWorld()->SpawnClass<AActor>(SpawnClass, Spawnlocation, SpawnRotator, Params);
+}
+
+UPROPERTY(EditDefaultsOnly)
+TSubclassOf<AActor> SpawnClass;
