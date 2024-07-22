@@ -1,0 +1,15 @@
+void AcCharacter::BeginPlay() {
+Super::BeginPlay();
+
+FtimerHandle TH_Timer;
+GetWorldTimerManager().SetTimer(TH_Timer, this, AcCharacter::Tetiklen, TetikZamani. true);
+}
+
+void AcCharacter::Tetiklen() {
+  GEngine->AddOnScreenDebugMessage(-1.f, 10, FColor::Red, TEXT("Fonksiyon tetiklendi."));
+}
+
+void Tetiklen();
+
+UPROPERTY(EditDefaultsOnly)
+float TetikZamani = 1.f;
