@@ -1,0 +1,37 @@
+#include SaveSaveGame.h
+
+PlayerInputComponent->BindAction("Kaydet", IE_Pressed, this, &AcCharacter::Kaydet);
+
+UCLASS()
+class SAVE_API USaveSaveGame : public USaveGame {
+  GENERATED_BODY()
+
+public:
+  UPROPERTY(EditDefaultsOnly)
+  float Health = 100.f;
+  UPROPERTY(EditDefaultsOnly)
+  int Score = 0;
+
+};
+
+void AcCharacter::Save() {
+  USaveSaveGame* SaveGame = Cast<USaveSaveGame>(UGameplayStatics::CreateSaveGameObject(USaveSaveGane::StaticClass()));
+  if(SaveGame) {
+    SaveGame->Health = Health;
+    SaveGame->Score = Score;
+
+    UGameplayStatics::SaveGameToSlot(SaveGame, "SG", 0);
+
+    GEngine->AddOnScreenDebugMessage(3, 10.f, FColor::Green, TEXT("Kayit oldu."));
+  }
+}
+
+void AcCharacter::BeginPlay() {
+  Super::BeginPlay();
+
+  USaveSaveGame* SaveGame = Cast<USaveSaveGame>UGameplayStatics::LoadGameFromSlot("SG", 0);
+  if(SaveGame){
+    Health = SaveGame -> Health;
+    Score = SaveGame -> Score;
+  }
+}
