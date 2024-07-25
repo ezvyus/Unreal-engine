@@ -1,0 +1,15 @@
+PlayerInputComponent->BindAction("Spawn", IE_Pressed, this, &AcCharacter::Spawn);
+
+void AcCharacter::Spawn() {
+  FVector SpawnLocation = GetActorLocation() + FVector(100.f ,0.f, 200.f);
+  FRotator SpawnRotator = FRotator(0);
+  FActorSpawnParameters Params;  
+  Params.SpawnCollisionHandlingOverride = ESpawnActorColissionHandlingMethod::AlwaysSpawn;
+  AActor* SpawnedActor = GetWorld()->SpawnActor<AActor>(SpawnClass ,SpawnLocation, SpawnRotator, Params);
+  if() {
+    GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, FString::Printf(TEXT("Spawnlanan actor ; %s") *SpawnedActor->GetName()));
+  }
+  else {
+    GEngine->AddOnScreenDebugMessage(5, 10, FColor::Orange, FString::Printf(TEXT("Actor spawnlanmadı. ")));
+  }
+}
